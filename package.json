@@ -1,0 +1,29 @@
+{
+  "name": "pods",
+  "version": "1.0.0",
+  "description": "Podcast deployment management software.",
+  "main": "pods.js",
+  "scripts": {
+    "test": "node pods.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anyweez/pods.git"
+  },
+  "author": "Luke Segars (anyweez)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anyweez/pods/issues"
+  },
+  "homepage": "https://github.com/anyweez/pods#readme",
+  "dependencies": {
+    "command-line-args": "^2.1.1",
+    "marked": "^0.3.5",
+    "moment": "^2.10.6",
+    "rss": "^1.2.1"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "pods": "cli.js"
+  }
+}
