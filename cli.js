@@ -17,7 +17,6 @@ options.operation = process.argv[2]; // unnamed, so not handled by argparse
 
 // Load all plugins.
 var plugins = {};
-console.log();
 fs.readdirSync(__dirname + '/plugins').forEach(function (filename) {
     if (filename.slice(filename.length - 3, filename.length) == ".js") {
         var plugin = require("./plugins/" + filename)
