@@ -66,6 +66,7 @@ function render(podcast, options) {
         feed.item({
             title: episode.info.title || "Example title",
             description: episode.info.description || "A simple episode description.",
+            url: episode.content.notes.public,
             enclosure: {
                 url: episode.content.audio.public,
                 // TODO: make audio type dynamic
@@ -73,8 +74,12 @@ function render(podcast, options) {
                 // TODO: make audo file size dynamic
                 size: 58630668
             },
+            date: episode.info.pubDate,
             custom_elements: [{
                 'itunes:summary': episode.info.description,
+            }, {
+                // TODO: make duration dynamic
+                'itunes:duration': '1:23',
             }],
         });
     });
