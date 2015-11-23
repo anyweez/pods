@@ -3,7 +3,7 @@
 var argparse = require('command-line-args');
 var process = require('process');
 var pods = require('./pods');
-var fs = require('fs');
+var plugin = require('./plugins');
 
 var args = argparse([
     {
@@ -12,32 +12,36 @@ var args = argparse([
     }
 ]);
 
+// Load all plugins and store them in the plugins[] object. Plugins provide a
+// `cmd` that is the term used to invoke them.
+var plugins = plugin.loadAll(__dirname + '/plugins');
+
+if (process.argv.length < 3) {
+    console.log("You must specify a command. Available commands:");
+    plugins.pprint();
+    return 1;
+}
+
 var options = args.parse();
 options.operation = process.argv[2]; // unnamed, so not handled by argparse
 
-// Load all plugins.
-var plugins = {};
-console.log();
-fs.readdirSync(__dirname + '/plugins').forEach(function (filename) {
-    if (filename.slice(filename.length - 3, filename.length) == ".js") {
-        var plugin = require("./plugins/" + filename)
-        plugins[plugin.cmd] = plugin.exec;
-    }
-});
-
 // Read in episode.json and returns a podcast object with all sorts
 // of fanciness.
-var podcast = pods.read('episodes.json')
-
-// TODO: convert to plugins
-try {
-    console.log(plugins[options.operation](podcast));
-} catch (e) {
-    if (e instanceof TypeError) {
-        console.log("Unsupported command: " + options.operation);
-        console.log(e.stack);
-    } else {
-        console.log("Error with " + options.operation + ":");
-        console.log(e.stack);
+pods.read('episodes.json', function (podcast) {
+    try {
+        console.log(plugins.load(options.operation)(podcast));
+    } catch (e) {
+        if (e instanceof TypeError) {
+            console.log("Unsupported command: " + options.operation);
+            console.log("Supported commands include:");
+            plugins.pprint();
+            console.log(e.stack);
+            return 2;
+        } else {
+            console.log(e.message);
+            console.log("Supported commands include:");
+            plugins.pprint();
+            return 3;
+        }
     }
-}
+});

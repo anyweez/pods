@@ -1,7 +1,7 @@
 {
-  "name": "pods",
-  "version": "1.0.0",
-  "description": "Podcast deployment management software.",
+  "name": "jspods",
+  "version": "0.1.0",
+  "description": "Podcast deployment management software",
   "main": "pods.js",
   "scripts": {
     "test": "node pods.js"
@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/anyweez/pods#readme",
   "dependencies": {
+    "async": "^1.5.0",
     "command-line-args": "^2.1.1",
     "marked": "^0.3.5",
     "moment": "^2.10.6",
+    "musicmetadata": "^2.0.2",
     "rss": "^1.2.1"
   },
   "preferGlobal": true,
