@@ -1,3 +1,4 @@
+/* jslint node: true */
 var rss = require('rss');
 var moment = require('moment');
 
@@ -53,7 +54,7 @@ function render(podcast, options) {
                         _attr: {
                             text: item.category,
                         }
-                    }
+                    };
                 })
             }, {
                 'itunes:explicit': podcast.series.explicit ? "yes" : "no",
@@ -63,6 +64,7 @@ function render(podcast, options) {
 
     // Generate episode-specific RSS content.
     podcast.episodes.forEach(function (episode) {
+        var duration = episode.content.audio.duration;
         feed.item({
             title: episode.info.title || "Example title",
             description: episode.info.description || "A simple episode description.",
@@ -71,15 +73,14 @@ function render(podcast, options) {
                 url: episode.content.audio.public,
                 // TODO: make audio type dynamic
                 type: "audio/mp4",
-                // TODO: make audo file size dynamic
-                size: 58630668
+                size: episode.content.audio.size
             },
             date: episode.info.pubDate,
             custom_elements: [{
                 'itunes:summary': episode.info.description,
             }, {
                 // TODO: make duration dynamic
-                'itunes:duration': '1:23',
+                'itunes:duration': duration.hours + ":" + duration.minutes + ":" + duration.seconds,
             }],
         });
     });
@@ -91,5 +92,6 @@ function render(podcast, options) {
 
 module.exports = {
     cmd: 'feed',
+    description: 'generate an RSS feed from episodes.json',
     exec: render,
 };

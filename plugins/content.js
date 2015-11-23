@@ -1,5 +1,8 @@
+/* jslint node: true */
+
 module.exports = {
     cmd: 'content',
+    description: 'generate a JSON file containing all page content from episodes.json',
     exec: function (podcast) {
         var content = [];
 
@@ -16,4 +19,4 @@ module.exports = {
 
         return JSON.stringify(content);
     },
-}
+};
