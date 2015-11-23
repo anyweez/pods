@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "5.1"
+  - "5.0"
+deploy:
+  provider: npm
+  email: luke@lukesegars.com
+  api_key:
+    secure: GhuQM1tOB1wZTr9H9/xcL0BVyZ/YinQrAMh1JNtgkTBjx8AOmSb6ucD9619j2xJxzHtZDG7T47hRNsiU0gb62d5ihf0Vgn8sg0xGpGcRu7JsigreT6/EkOgPscZkeWoZXgDWd2FpybxGdKA0FaBdTVzkw+CQPiNj2HKG7njCcO8updz7N36D0JCJk5uI5WyvM4oY9Kgjm8oeai6OQRlQvOBYMnEd3il0pKALAdq+PSoGYEjoFMjsVNcuftUVuNbjJIAgcxtYrVTpeCIvw9dft2E4Ol5xeNa/+8oL36Y3SvLqzLxSgV/dYR+WE4+Khn30R0qhnF4MoZlDJFgGQnsFrKNts5mBK9+O0TUz73+StNMvks5Wydnt0AaBQmfxNqt+SOR8j8WYgijV2jL6isvoB2JCo4ydq3hoQSw1Jxc9N4MptoqmqIYhoUjkxi2SbOcdS7EafQycfVDJ33HviTqlOPDBgrfJZbZVe7OqrgD7DGjzCbk/ZCff/DRh7Cc6Lr0Y6Rbv1oho29uutY5KdgIU0FhhUGlFvkONbBmEGAXxl76pLR5wZH9n1rtkiHkJEjwHL3+kyS5jiOnWGV24NmA8eZEQbzRX1rNzprgof3KMzyq1sPIF07dv+aHz+atlqdQWax7kwOqXI3BU6Jjd3Ay+Q32BUyHyuJA+xpm0MpAlots=
+  on:
+    branch: master
