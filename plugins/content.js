@@ -13,6 +13,7 @@ module.exports = (function () {
                     title: episode.info.title,
                     number: episode.info.number,
                     timestamp: episode.info.pubDate,
+                    audio: episode.content.audio.public,
                     content: episode.content.text,
                     latest: episode.info.id == podcast.latest.info.id,
                 });
